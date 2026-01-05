@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Well Coconut Grove – BESCA</title>
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-pt">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: 'Futura PT', sans-serif;
+  overflow-x:hidden;
+  background:#fff;
+  line-height:1;
+}
+
+/* ==================== HEADER ==================== */
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:130px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 80px;
+  z-index:1000;
+  transition:all .4s;
+}
+.logo-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+.logo-center a{
+  font-size:58px;
+  font-weight:100;
+  letter-spacing:16px;
+  color:#000;
+  text-decoration:none;
+  transition:all .4s;
+  white-space:nowrap;
+}
+.logo-center a:hover{opacity:0.7;}
+.nav-left a,.nav-right a{
+  font:300 14px/1 'Helvetica Neue';
+  text-transform:uppercase;
+  letter-spacing:3px;
+  color:#000;
+  text-decoration:none;
+  opacity:0.8;
+  transition:.3s;
+}
+.nav-left a:hover,.nav-right a:hover{opacity:1;}
+
+/* ==================== HAMBURGER – Mobile ==================== */
+.hamburger{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+  color:#000;
+}
+
+/* ==================== MOBILE WORK MENU ==================== */
+.mobile-work-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:100%;
+  height:100vh;
+  background:#fff;
+  z-index:999;
+  padding:140px 40px;
+  transition:right .5s ease;
+  text-align:center;
+}
+.mobile-work-menu.active{right:0;}
+.mobile-work-menu a{
+  display:block;
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:#000;
+  text-decoration:none;
+  margin-bottom:40px;
+  opacity:0.85;
+  transition:opacity .3s, transform .4s;
+}
+.mobile-work-menu a:hover{opacity:1;transform:translateY(-6px);}
+
+/* ==================== PARALLAX HERO ==================== */
+.parallax{
+  height:85vh;
+  position:relative;
+  overflow:hidden;
+}
+.parallax img{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:120%;
+  height:120%;
+  object-fit:cover;
+  transform:translateX(-50%);
+}
+.parallax::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent 30%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.9) 100%);
+}
+
+/* ==================== INTRO SECTION ==================== */
+.intro-section{
+  background:#000;
+  color:#fff;
+  padding:140px 80px 160px;
+}
+.intro-inner{
+  max-width:1400px;
+  margin:0 auto;
+  text-align:center;
+}
+.intro-inner h1{
+  font-size:92px;
+  font-weight:100;
+  line-height:1.05;
+  margin-bottom:20px;
+}
+.intro-inner .subtitle{
+  font-size:28px;
+  opacity:0.94;
+  margin-bottom:80px;
+}
+.intro-text{
+  max-width:1000px;
+  margin:0 auto 80px;
+  font-size:24px;
+  line-height:1.8;
+  opacity:0.95;
+}
+.details{
+  display:flex;
+  justify-content:center;
+  gap:200px;
+  flex-wrap:wrap;
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+.details div{opacity:0.9;}
+.details strong{display:block;font-weight:400;margin-bottom:8px;opacity:0.7;}
+
+/* ==================== GALLERY ==================== */
+.gallery{
+  column-count:3;
+  column-gap:0;
+  column-fill:balance;
+  padding:0 10px 10px 10px;
+}
+.item{
+  break-inside:avoid;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:2px;
+  cursor:pointer;
+}
+.item img{
+  width:100%;
+  height:auto;
+  display:block;
+  transition:transform .9s ease;
+}
+.item:hover img{transform:scale(1.07);}
+.overlay{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;text-align:center;
+  opacity:0;transition:opacity .7s ease;
+  pointer-events:none;width:88%;
+}
+.item:hover .overlay{opacity:1;}
+.overlay h3{font-size:26px;font-weight:600;letter-spacing:2px;margin-bottom:6px;}
+.overlay p{font-size:15px;opacity:0.9;}
+
+/* ==================== FOOTER – Exact Same Final Version ==================== */
+footer {
+    background: #000;
+    color: #999;
+    padding: 50px 80px 100px;
+}
+
+.footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+.footer-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.logo-studio-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.footer-logo {
+    font-size: 58px;
+    font-weight: 400;
+    letter-spacing: 18px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 40px;
+}
+
+.studio-box {
+    position: absolute;
+    bottom: 10px;
+    left: 1.9%;
+    right: 6.9%;
+    width: auto;
+    height: 36px;
+    background: #fff;
+    z-index: 1;
+    padding: 0 15%;
+}
+
+.studio-text {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    right: 0;
+    width: auto;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 25px;
+    color: #000;
+    z-index: 3;
+    padding: 0% 15%;
+}
+
+.tagline {
+    color: #aaa;
+    font-size: 17px;
+    line-height: 1;
+    margin-top: 40px;
+}
+
+.footer-right {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+}
+
+.contact-us {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+
+.social {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+    margin-bottom: 100px;
+}
+
+.social a {
+    width: 54px;
+    height: 54px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 24px;
+    transition: all .5s ease;
+}
+
+.social a:hover {
+    background: #444;
+    color: #fff;
+    transform: translateY(-6px);
+}
+
+.copyright, .privacy {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.privacy a {
+    color: #666;
+    text-decoration: none;
+}
+
+.privacy a:hover {
+    text-decoration: underline;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:1400px){.gallery{column-count:3;}}
+@media(max-width:1200px){.gallery{column-count:2;}}
+@media(max-width:900px){
+  header{height:100px;padding:0 30px;}
+  .logo-center a{font-size:38px;letter-spacing:8px;}
+  .nav-left,.nav-right{display:block;}
+  .hamburger{display:none;}
+  .parallax{height:70vh;}
+  .intro-section{padding:120px 30px 140px;}
+  .gallery{padding:0 0 180px 0;column-count:1;}
+  .intro-inner h1{font-size:52px;}
+  .intro-inner .subtitle{font-size:22px;}
+  .intro-text{font-size:20px;}
+  .details{gap:80px;}
+
+  footer { padding: 140px 40px 80px; }
+  .footer-inner { flex-direction: column; gap: 80px; text-align: center; }
+  .footer-left, .footer-right { text-align: center; }
+  .social { justify-content: center; }
+  .footer-logo { font-size: 52px; letter-spacing: 14px; }
+
+  .studio-box, .studio-text {
+      padding: 0 12%;
+      height: 32px;
+      bottom: 13px;
+  }
+  .studio-text { font-size: 20px; letter-spacing: 22px; }
+
+  .tagline { margin-top: 60px; }
+}
+
+@media(max-width:768px){.gallery{column-count:1;}}
+@media(max-width:480px){
+  header{height:90px;padding:0 20px;}
+  .logo-center a{font-size:32px;letter-spacing:6px;}
+  .details{flex-direction:column;gap:40px;text-align:center;}
+  .nav-left a,.nav-right a{font-size:13px;}
+
+  .footer-logo { font-size: 46px; letter-spacing: 12px; }
+  .social a { width: 50px; height: 50px; font-size: 22px; }
+
+  .studio-box, .studio-text {
+      padding: 0 46%;
+      height: 28px;
+      bottom: 18px; 
+  }
+  .studio-text { font-size: 18px; letter-spacing: 19px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-left"><a href="index.html">About</a></div>
+  <div class="logo-center"><a href="index.html">BESCA</a></div>
+  <div class="nav-right"><a onclick="toggleWorkMenu()">Work</a></div>
+</header>
+
+<!-- MOBILE WORK MENU -->
+<div class="mobile-work-menu" id="workMenu">
+  <a href="gallery.html">Gallery</a>
+  <a href="casestudies.html">Case Studies</a>
+  <a href="interior.html">Interior</a>
+  <a href="exterior.html">Exterior</a>
+  <a href="commercial.html">Commercial</a>
+  <a href="film-animation.html">Film + Animation</a>
+</div>
+
+<!-- PARALLAX HERO -->
+<div class="parallax">
+  <img src="https://ivanandmike.com/wp-content/uploads/2025/08/TWCG_Exterior_EastFacade.png" alt="The Well Coconut Grove" loading="lazy">
+</div>
+
+<!-- INTRO SECTION -->
+<section class="intro-section">
+  <div class="intro-inner">
+    <h1>The Well<br>Coconut Grove</h1>
+    <div class="subtitle">Miami, USA</div>
+    <p class="intro-text">
+      Elevated spaces tailored for mind, body, and soul. From lush canopy views to calming interiors that breathe wellness into every room, BESCA is honored to bring this vision to life with Terra and THE WELL.
+    </p>
+    <div class="details">
+      <div><strong>Developer</strong>Terra Group</div>
+      <div><strong>Location</strong>Coconut Grove</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY – Mobile pe full width -->
+<div class="gallery">
+  <div class="item">
+    <img src="https://www.miamiluxuryhomes.com/wp-content/uploads/2024/12/Rendering-of-THE-WELL-Coconut-Grove-Exterior-Tigertail-Street-View.jpg" alt="">
+    <div class="overlay"><h3>Exterior View</h3><p>Tigertail Street</p></div>
+  </div>
+  <div class="item">
+    <img src="https://www.terragroup.com/wp-content/uploads/2025/06/the-well-cg_gallery_02.jpg" alt="">
+    <div class="overlay"><h3>Wellness Interior</h3><p>Natural Materials</p></div>
+  </div>
+  <div class="item">
+    <img src="https://cdn.pixabay.com/photo/2025/05/06/12/19/hut-9582608_960_720.jpg" alt="">
+    <div class="overlay"><h3>Main Entrance</h3><p>Coconut Grove</p></div>
+  </div>
+  <div class="item">
+    <img src="https://api.curaytor.io/sites/1746/media/3051342/The%20WELL%20Coconut%20Grove-%20Residence%20TH05%20Bedroom.jpg?w=1140" alt="">
+    <div class="overlay"><h3>Serene Bedroom</h3><p>Canopy Views</p></div>
+  </div>
+  <div class="item">
+    <img src="https://www.miamiluxuryhomes.com/wp-content/uploads/2024/12/Rendering-of-THE-WELL-Coconut-Grove-Aerial-View-Skyline.jpg" alt="">
+    <div class="overlay"><h3>Aerial View</h3><p>Miami Skyline</p></div>
+  </div>
+  <div class="item">
+    <img src="https://www.miamiluxuryhomes.com/wp-content/uploads/2024/12/Rendering-of-THE-WELL-Coconut-Grove-with-Lobby.jpg" alt="">
+    <div class="overlay"><h3>Lobby</h3><p>Sophisticated Welcome</p></div>
+  </div>
+</div>
+
+<!-- FOOTER – Exact Same Final Version (White Box + Paragraph) -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <div class="logo-studio-wrapper">
+                <div class="footer-logo">BESCA</div>
+                <div class="studio-box"></div>
+                <div class="studio-text">STUDIO</div>
+            </div>
+            <div class="tagline">
+                BESCA Studio is an architectural visualization studio delivering high-end interior and exterior imagery, refined architectural renders, and cinematic 3D animations for luxury residential, commercial, and mixed-use developments. Our work is driven by precision, atmosphere, and visual storytelling, allowing developers and design studios to present their projects with confidence at every stage — from concept to marketing. To experience the depth and quality of our work, explore our portfolio in the <i>Work</i> section.
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <div class="contact-us">Contact Us</div>
+            <div class="social">
+                <a href="https://www.linkedin.com/company/binyan-studios/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/binyanstudios/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://vimeo.com/binyan" target="_blank"><i class="fab fa-vimeo-v"></i></a>
+                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="copyright">© 2026 BESCA Studio All Rights Reserved.</div>
+            <div class="privacy"><a href="Privacy.html">Privacy Policy</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  function toggleWorkMenu() {
+    document.getElementById('workMenu').classList.toggle('active');
+  }
+
+  // Parallax
+  const img = document.querySelector('.parallax img');
+  window.addEventListener('scroll', () => {
+    let scroll = window.pageYOffset;
+    img.style.transform = `translateX(-50%) translateY(${scroll * 0.6}px)`;
+  });
+</script>
+
+</body>
+</html>

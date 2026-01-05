@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exterior – BESCA</title>
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-pt">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: 'Futura PT', sans-serif;
+  background:#fff;
+  overflow-x:hidden;
+  line-height:1;
+}
+
+
+
+/* ==================== PAGE LOADER (shows on all pages) ==================== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #fff; /* or #000 if you want dark */
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.6s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Your loader animation */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: -20px 0px, 20px 0px;
+  animation: l18 1s infinite;
+}
+
+@keyframes l18 {
+  25% { box-shadow: -20px -20px, 20px 20px; }
+  50% { box-shadow: 0px -20px, 0px 20px; }
+  75% { box-shadow: 20px -20px, -20px 20px; }
+  100% { box-shadow: 20px 0px, -20px 0px; }
+}
+
+/* Optional: make it bigger on mobile */
+@media (max-width: 600px) {
+  .loader {
+    width: 20px;
+    box-shadow: -30px 0px, 30px 0px;
+  }
+  @keyframes l18 {
+    25% { box-shadow: -30px -30px, 30px 30px; }
+    50% { box-shadow: 0px -30px, 0px 30px; }
+    75% { box-shadow: 30px -30px, -30px 30px; }
+    100% { box-shadow: 30px 0px, -30px 0px; }
+  }
+}
+/* ==================== HEADER ==================== */
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:120px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 80px;
+  z-index:1000;
+  transition:height .4s;
+}
+.logo-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+.logo-center a{
+  font-size:52px;
+  font-weight:400;
+  letter-spacing:16px;
+  color:#000;
+  text-decoration:none;
+  transition:.3s;
+}
+.logo-center a:hover{opacity:0.7;}
+.nav-left a,.nav-right a{
+  font-size:14px;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:#000;
+  text-decoration:none;
+  opacity:0.85;
+  transition:opacity .3s, transform .4s;
+  display:inline-block;
+  cursor:pointer;
+}
+.nav-left a:hover,.nav-right a:hover{
+  opacity:1;
+  transform:translateY(-6px);
+}
+
+/* ==================== MAIN ==================== */
+.main{margin-top:120px;}
+
+
+
+/* ==================== SUB MENU – Modern Animation ==================== */
+.sub-menu {
+  text-align: center;
+  padding: 80px 20px 60px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.sub-menu a {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #888;
+  text-decoration: none;
+  padding: 12px 28px;
+  transition: color 0.5s ease;
+  z-index: 1;
+}
+
+/* Active state */
+.sub-menu a.active {
+  color: #000;
+}
+
+.sub-menu a.active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 1px;
+  background: #000;
+  pointer-events: none;
+}
+
+.sub-menu a.active::after {
+  content: '▲';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #000;
+  animation: bounceArrow 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* Hover Animation */
+.sub-menu a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transform: scaleY(2.8);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  z-index: -1;
+}
+
+.sub-menu a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  z-index: -2;
+}
+
+.sub-menu a:hover {
+  color: #fff !important;
+}
+
+.sub-menu a:hover::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.sub-menu a:hover::after {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.sub-menu a.active:hover {
+  color: #fff !important;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+/* MOBILE WORK MENU */
+.mobile-work-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:100%;
+  height:100vh;
+  background:#fff;
+  z-index:999;
+  padding:140px 40px;
+  transition:right .5s ease;
+  text-align:center;
+}
+.mobile-work-menu.active{right:0;}
+.mobile-work-menu a{
+  display:block;
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:#000;
+  text-decoration:none;
+  margin-bottom:40px;
+  opacity:0.85;
+  transition:opacity .3s, transform .4s;
+}
+.mobile-work-menu a:hover{
+  opacity:1;
+  transform:translateY(-6px);
+}
+
+/* ==================== GALLERY – Perfect Level Grid (No up-down) ==================== */
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2px;
+  padding: 0 0 180px 0;
+}
+.item{
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* تمام تصاویر crop ہو کر equal height */
+  display: block;
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.item:hover img{
+  transform: scale(1.07);
+}
+.item::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0);
+  transition:background .8s ease;
+  z-index:1;
+  pointer-events:none;
+}
+.item:hover::after{
+  background:rgba(0,0,0,0.45);
+}
+.overlay{
+  position:absolute;
+  top:90%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  text-align:center;
+  opacity:0;
+  transition:opacity .7s ease;
+  pointer-events:none;
+  width:88%;
+  z-index:2;
+}
+.item:hover .overlay{opacity:1;}
+.overlay h3{
+  font-size:21px;
+  font-weight:200;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+
+
+
+.floating-start {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 999;
+
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    opacity: 0.7;
+
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .floating-start:hover {
+    opacity: 1;
+    color: white;
+    transform: translateX(-16px);
+  }
+
+  .floating-start::after {
+    content: "→";               /* ← yeh straight arrow hai */
+    margin-left: 0.5rem;
+    opacity: 0.45;
+    transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    display: inline-block;
+  }
+
+  .floating-start:hover::after {
+    opacity: 1;
+    transform: translateX(12px);   /* straight right movement */
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .floating-start {
+      bottom: 28px;
+      right: 28px;
+      font-size: 1rem;
+    }
+  }
+
+/* ==================== FOOTER ==================== */
+footer {
+    background: #000;
+    color: #999;
+    padding: 50px 80px 100px;
+}
+
+.footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+.footer-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.logo-studio-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.footer-logo {
+    font-size: 58px;
+    font-weight: 400;
+    letter-spacing: 18px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 40px; 
+}
+
+.studio-box {
+    position: absolute;
+    bottom: 10px;
+    left: 1.9%;
+    right: 6.9%;
+    width: auto;
+    height: 36px;
+    background: #fff;
+    z-index: 1;
+    padding: 0 15%;
+}
+
+.studio-text {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    right: 0;
+    width: auto;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 25px;
+    color: #000;
+    z-index: 3;
+    padding: 0% 15%;
+}
+
+.tagline {
+    color: #aaa;
+    font-size: 17px;
+    line-height: 1;
+    margin-top: 40px;
+}
+
+.footer-right {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+}
+
+.contact-us {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+
+.social {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+    margin-bottom: 100px;
+}
+
+.social a {
+    width: 54px;
+    height: 54px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 24px;
+    transition: all .5s ease;
+}
+
+.social a:hover {
+    background: #444;
+    color: #fff;
+    transform: translateY(-6px);
+}
+
+.copyright, .privacy {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.privacy a {
+    color: #666;
+    text-decoration: none;
+}
+
+.privacy a:hover {
+    text-decoration: underline;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:900px){
+  header{height:100px;padding:0 30px;}
+  .logo-center a{font-size:42px;letter-spacing:10px;}
+  .main{margin-top:100px;}
+  .sub-menu{display:none;}
+  
+  .gallery {grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); padding-bottom:140px;}
+  footer {padding:140px 40px 80px;}
+  .footer-inner {flex-direction:column; gap:80px; text-align:center;}
+  .social {justify-content:center;}
+}
+
+@media(max-width:600px){
+  .gallery {grid-template-columns: 1fr; padding-bottom:120px;}
+}
+</style>
+</head>
+<body>
+
+<!-- बस Floating Button का कोड (Ultra Minimal + Elegant) -->
+
+<a href="contact.html" class="floating-start">
+  Start a Project
+</a>
+
+<!-- Page Loader -->
+<div class="page-loader">
+  <div class="loader"></div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-left"><a href="index.html">About</a></div>
+  <div class="logo-center"><a href="index.html">BESCA</a></div>
+  <div class="nav-right"><a onclick="toggleWorkMenu()">Work</a></div>
+</header>
+
+<!-- MOBILE WORK MENU -->
+<div class="mobile-work-menu" id="workMenu">
+  <a href="gallery.html">Gallery</a>
+  <a href="interior.html">Interior</a>
+  <a href="exterior.html" class="active">Exterior</a>
+  <a href="film-animation.html">Film + Animation</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="main">
+  <!-- SUB MENU – Desktop only -->
+  <div class="sub-menu">
+    <a href="gallery.html">Gallery</a>
+    <a href="interior.html">Interior</a>
+    <a href="exterior.html" class="active">Exterior</a>
+    <a href="film-animation.html">Film + Animation</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- EXTERIOR GALLERY – Perfect Level Grid -->
+  <div class="gallery">
+    <div class="item">
+      <img src="img/int14.jpg" alt="Baccarat Tower">
+      <div class="overlay"><h3>BACCARAT RESIDENCES</h3></div>
+    </div>
+
+    <div class="item">
+      <img src="https://binyanstudios.com/wp-content/uploads/2024/05/520-Fifth-Ave-1.jpg" alt="520 Fifth Avenue">
+      <div class="overlay"><h3>520 FIFTH AVE</h3></div>
+    </div>
+
+    <div class="item">
+      <img src="https://binyanstudios.com/wp-content/uploads/2024/04/One-Sydney-Harbour-1.jpg" alt="One Sydney Harbour">
+      <div class="overlay"><h3>ONE SYDNEY HARBOUR</h3></div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1481026469463-66327c86e544?w=1600&q=85" alt="Modern Tower">
+      <div class="overlay"><h3>MODERN TOWER</h3></div>
+    </div>
+
+    <!-- اگر مزید تصاویر شامل کریں تو بھی level رہے گی -->
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <div class="logo-studio-wrapper">
+                <div class="footer-logo">BESCA</div>
+                <div class="studio-box"></div>
+                <div class="studio-text">STUDIO</div>
+            </div>
+            <div class="tagline">
+                BESCA Studio is an architectural visualization studio delivering high-end interior and exterior imagery, refined architectural renders, and cinematic 3D animations for luxury residential, commercial, and mixed-use developments. Our work is driven by precision, atmosphere, and visual storytelling, allowing developers and design studios to present their projects with confidence at every stage — from concept to marketing. To experience the depth and quality of our work, explore our portfolio in the <i>Work</i> section.
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <div class="contact-us">Contact Us</div>
+            <div class="social">
+                <a href="https://www.linkedin.com/in/bescastudio" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-vimeo-v"></i></a>
+                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="copyright">© 2023 BESCA Studio All Rights Reserved.</div>
+            <div class="privacy"><a href="Privacy.html">Privacy Policy</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleWorkMenu() {
+  document.getElementById('workMenu').classList.toggle('active');
+}
+</script>
+<script>
+
+
+
+  // Hide loader after page fully loads
+  window.addEventListener('load', () => {
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+      // Minimum display time for better UX (1.5 seconds)
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        // Remove from DOM after fade (optional)
+        setTimeout(() => {
+          loader.remove();
+        }, 600);
+      }, 400);
+    }
+  });
+
+  // Safety: force hide after max 5 seconds (mobile cache issues)
+  setTimeout(() => {
+    const loader = document.querySelector('.page-loader');
+    if (loader && !loader.classList.contains('hidden')) {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 600);
+    }
+  }, 1000);
+
+
+ 
+</script>
+
+</body>
+</html>

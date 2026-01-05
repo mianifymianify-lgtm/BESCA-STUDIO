@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | BESCA - 3D Architectural Visualization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-pt">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+   
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            font-family: 'Futura PT', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+
+
+
+
+
+
+
+
+
+/* ==================== PAGE LOADER (shows on all pages) ==================== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* or #000 if you want dark */
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.6s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Your loader animation */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: -20px 0px, 20px 0px;
+  animation: l18 1s infinite;
+}
+
+@keyframes l18 {
+  25% { box-shadow: -20px -20px, 20px 20px; }
+  50% { box-shadow: 0px -20px, 0px 20px; }
+  75% { box-shadow: 20px -20px, -20px 20px; }
+  100% { box-shadow: 20px 0px, -20px 0px; }
+}
+
+/* Optional: make it bigger on mobile */
+@media (max-width: 600px) {
+  .loader {
+    width: 20px;
+    box-shadow: -30px 0px, 30px 0px;
+  }
+  @keyframes l18 {
+    25% { box-shadow: -30px -30px, 30px 30px; }
+    50% { box-shadow: 0px -30px, 0px 30px; }
+    75% { box-shadow: 30px -30px, -30px 30px; }
+    100% { box-shadow: 30px 0px, -30px 0px; }
+  }
+}
+
+
+
+
+
+
+
+
+
+        /* Desktop Navigation */
+        .nav-desktop {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 50px 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: rgba(0,0,0,0);
+            backdrop-filter: blur(0);
+            transition: all .6s ease;
+        }
+        .nav-desktop.scrolled {
+            padding: 30px 70px;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+        }
+        .nav-desktop .nav-left a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+        .nav-desktop .nav-left a:hover { opacity: 1; }
+        .nav-desktop .nav-right img {
+            height: 80px;
+            opacity: 0.85;
+            transition: all .6s ease;
+        }
+        .nav-desktop .nav-right img:hover { opacity: 1; }
+        /* Center BESCA Logo - Simple (no border) */
+        .center-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 42px;
+            font-weight: 100;
+            letter-spacing: 12px;
+            color: #fff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .6s ease;
+        }
+        .nav-desktop.scrolled .center-logo {
+            opacity: 1;
+        }
+        .nav-desktop.scrolled .nav-left,
+        .nav-desktop.scrolled .nav-right {
+            opacity: 0;
+        }
+        /* Mobile Navigation Bar */
+        .nav-mobile {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 90px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            z-index: 100;
+        }
+        .nav-mobile a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity .4s;
+            font-size: 16px;
+            letter-spacing: 3px;
+        }
+        .nav-mobile a:hover { opacity: 1; }
+        .nav-mobile .logo-mobile {
+            font-size: 36px;
+            font-weight: 100;
+            letter-spacing: 8px;
+        }
+        .mobile-work {
+            cursor: pointer;
+            font-size: 16px;
+            letter-spacing: 3px;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+        .mobile-work:hover {
+            opacity: 1;
+        }
+        /* Mobile Full Screen Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgb(33 18 18 / 73%);
+            backdrop-filter: blur(10px);
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.5s ease;
+        }
+        .mobile-menu.active {
+            right: 0;
+        }
+        .mobile-menu a {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #fff;
+            text-decoration: none;
+            margin: 30px 0;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .mobile-menu a:hover {
+            opacity: 1;
+        }
+        /* Hero Section with Keyboard Press Animation + Glow Scanner */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #000;
+        }
+
+        /* Keyboard Container for Scanner Line */
+        .keyboard-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+
+        .keyboard-container::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 6px;
+            height: 140%;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 30%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0.1) 70%,
+                transparent 100%
+            );
+            box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.5);
+            border-radius: 50px;
+            opacity: 0;
+            animation: scanGlow 7s infinite linear;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes scanGlow {
+            0% {
+                left: -10%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 110%;
+                opacity: 0;
+            }
+        }
+
+        .keyboard {
+            font-family: 'Futura PT', sans-serif;
+            font-weight: 300;
+            font-size: 14vw;
+            letter-spacing: -1.5vw;
+            line-height: 1;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .key {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        @keyframes pressDownB {
+            0%, 20%, 100% { transform: translateY(0); }
+            10% { transform: translateY(12px); }
+        }
+        @keyframes pressDownE {
+            0%, 25%, 100% { transform: translateY(0); }
+            15% { transform: translateY(12px); }
+        }
+        @keyframes pressDownS {
+            0%, 30%, 100% { transform: translateY(0); }
+            20% { transform: translateY(12px); }
+        }
+        @keyframes pressDownC {
+            0%, 35%, 100% { transform: translateY(0); }
+            25% { transform: translateY(12px); }
+        }
+        @keyframes pressDownA {
+            0%, 40%, 100% { transform: translateY(0); }
+            30% { transform: translateY(12px); }
+        }
+
+        .key:nth-child(1) { animation: pressDownB 4s infinite ease-in-out; }
+        .key:nth-child(2) { animation: pressDownE 4s infinite ease-in-out; }
+        .key:nth-child(3) { animation: pressDownS 4s infinite ease-in-out; }
+        .key:nth-child(4) { animation: pressDownC 4s infinite ease-in-out; }
+        .key:nth-child(5) { animation: pressDownA 4s infinite ease-in-out; }
+
+        .hero-subtitle {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 10px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        .hero-text {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            opacity: 0.85;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        .jump-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .jump-links a {
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #aaa;
+            text-decoration: none;
+            padding-bottom: 8px;
+            border-bottom: 2px solid transparent;
+            transition: all .4s;
+        }
+        .jump-links a:hover {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        /* Sections */
+        .section {
+            padding: 180px 70px;
+            max-width: 1400px;
+            margin: 0 auto;
+            scroll-margin-top: 120px;
+        }
+        .section-title {
+            font-size: 80px;
+            font-weight: 100;
+            letter-spacing: 12px;
+            text-align: center;
+            margin-bottom: 100px;
+            opacity: 0.95;
+        }
+        .text-block {
+            font-size: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0.85;
+            line-height: 2;
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+        }
+        .coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulse 4s infinite ease-in-out;
+        }
+        .coming-soon h2 {
+            font-size: 100px;
+            font-weight: 100;
+            letter-spacing: 20px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1.8s ease-out forwards;
+        }
+        .coming-soon p {
+            font-size: 24px;
+            letter-spacing: 8px;
+            opacity: 0.8;
+            animation: fadeInUp 1.8s ease-out 0.4s forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 100px auto 0;
+        }
+        .service-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            border: 1px solid #333;
+            transition: border-color .4s;
+        }
+        .service-item:hover {
+            border-color: #666;
+        }
+        .service-item img,
+        .service-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+        .service-item:hover img,
+        .service-item:hover video {
+            transform: scale(1.08);
+        }
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 40px 20px 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity .5s;
+        }
+        .service-item:hover .service-overlay {
+            opacity: 1;
+        }
+        .service-overlay h3 {
+            font-size: 24px;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+        .service-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 180px 70px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        .cta-title {
+            font-size: 60px;
+            font-weight: 100;
+            letter-spacing: 10px;
+            margin-bottom: 50px;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            padding: 20px 60px;
+            border: 1px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            transition: all .5s;
+        }
+        .cta-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #999;
+            padding: 50px 80px 100px;
+        }
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 100px;
+        }
+        .footer-left {
+            flex: 1;
+            min-width: 300px;
+        }
+        .logo-studio-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .footer-logo {
+            font-size: 58px;
+            font-weight: 400;
+            letter-spacing: 18px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 33px;
+        }
+        .studio-box {
+            position: absolute;
+            bottom: 26px;
+            left: 1.9%;
+            right: 6.9%;
+            width: auto;
+            height: 36px;
+            background: #fff;
+            z-index: 1;
+            padding: 0 15%;
+        }
+        .studio-text {
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            right: 4px;
+            width: auto;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 25px;
+            color: #000;
+            z-index: 3;
+            padding: 0% 15%;
+        }
+        .tagline {
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1;
+            margin-top: 40px;
+        }
+        .footer-right {
+            flex: 1;
+            min-width: 300px;
+            text-align: right;
+        }
+        .contact-us {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+        .social {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-end;
+            margin-bottom: 100px;
+        }
+        .social a {
+            width: 54px;
+            height: 54px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 24px;
+            transition: all .5s ease;
+        }
+        .social a:hover {
+            background: #444;
+            color: #fff;
+            transform: translateY(-6px);
+        }
+        .copyright, .privacy {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+        .privacy a {
+            color: #666;
+            text-decoration: none;
+        }
+        .privacy a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 900px) {
+            .nav-desktop { display: none; }
+            .nav-mobile { display: flex; }
+            .jump-links { display: none; }
+            .section, .cta { padding: 120px 30px; }
+            .coming-soon { height: 60vh; }
+            .coming-soon h2 { font-size: 60px; letter-spacing: 12px; }
+            .coming-soon p { font-size: 20px; }
+            .hero-subtitle { font-size: 26px; letter-spacing: 8px; margin-bottom: 30px; }
+            .hero-text { font-size: 16px; margin: 0 auto 60px; }
+            .keyboard {
+                font-size: 24vw;
+                letter-spacing: -3vw;
+            }
+            .mobile-menu a {
+                font-size: 28px;
+                letter-spacing: 6px;
+                margin: 25px 0;
+            }
+            .section-title { font-size: 50px; }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .service-overlay { opacity: 1; padding: 30px 20px; }
+            footer {
+                padding: 140px 40px 80px;
+            }
+            .footer-inner {
+                flex-direction: column;
+                gap: 80px;
+                text-align: center;
+            }
+            .footer-left, .footer-right { text-align: center; }
+            .social { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .nav-mobile { height: 80px; padding: 0 20px; }
+            .nav-mobile .logo-mobile { font-size: 30px; }
+            .mobile-menu a {
+                font-size: 24px;
+                letter-spacing: 5px;
+                margin: 20px 0;
+            }
+            .keyboard {
+                font-size: 28vw;
+                letter-spacing: -4vw;
+            }
+            .hero-subtitle { font-size: 20px; letter-spacing: 6px; }
+            .hero-text { font-size: 15px; }
+            .coming-soon h2 { font-size: 46px; letter-spacing: 8px; }
+            .coming-soon p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+
+<!-- Page Loader -->
+<div class="page-loader">
+  <div class="loader"></div>
+</div>
+
+
+
+    <!-- Desktop Navigation -->
+    <div class="nav-desktop" id="navbar">
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+        </div>
+        <div class="center-logo">BESCA</div>
+        <div class="nav-right">
+            <a href="index.html">
+                <img src="img/logomain.png" alt="BESCA Logo">
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <a href="index.html">Home</a>
+        <div class="logo-mobile">BESCA</div>
+        <div class="mobile-work" onclick="toggleMobileMenu()">Work</div>
+    </div>
+
+    <!-- Mobile Full Screen Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="gallery.html">Gallery</a>
+        <a href="interior.html">Interior</a>
+        <a href="exterior.html">Exterior</a>
+        <a href="film-animation.html">Film + Animation</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="keyboard-container">
+            <div class="keyboard">
+                <span class="key">B</span>
+                <span class="key">E</span>
+                <span class="key">S</span>
+                <span class="key">C</span>
+                <span class="key">A</span>
+            </div>
+        </div>
+        <div class="hero-subtitle">Hyper-Real Visions</div>
+        <p class="hero-text">
+            We are a premium 3D architectural visualization studio dedicated to transforming ideas into breathtaking, photorealistic imagery.
+            Every render we create tells a story — one of precision, emotion, and architectural excellence.
+        </p>
+        <div class="jump-links">
+            <a href="#showreel">Showreel</a>
+            <a href="#what-we-do">What We Do</a>
+            
+        </div>
+    </section>
+
+    <!-- Showreel - Coming Soon -->
+    <section class="section coming-soon" id="showreel">
+        <h2>SHOWREEL</h2>
+        <p>COMING SOON</p>
+    </section>
+
+    <!-- What We Do -->
+    <section class="section" id="what-we-do">
+        <h2 class="section-title">What We Do</h2>
+        <p class="text-block">
+            We deliver photorealistic 3D visualizations that elevate architectural projects. Our core services combine technical mastery with artistic vision.
+        </p>
+        <div class="services-grid">
+            <div class="service-item">
+                <img src="img/about.1.jpg" alt="Exterior Renders">
+                <div class="service-overlay">
+                    <h3>Exterior Renders</h3>
+                    <p>Iconic facades brought to life with perfect light and atmosphere</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <img src="img/interior3.jpg" alt="Interior Renders">
+                <div class="service-overlay">
+                    <h3>Interior Renders</h3>
+                    <p>Luxurious spaces with meticulous material and lighting detail</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <video src="img/bescamainvideo.mp4" autoplay loop muted playsinline preload="auto">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="service-overlay">
+                    <h3>Animations & Films</h3>
+                    <p>Cinematic storytelling through fluid camera movements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h2 class="cta-title">Let's Create Together</h2>
+        <a href="gallery.html" class="cta-btn">Explore Our Work</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="logo-studio-wrapper">
+                    <div class="footer-logo">BESCA</div>
+                    <div class="studio-box"></div>
+                    <div class="studio-text">STUDIO</div>
+                </div>
+                <div class="tagline">
+                    BESCA Studio is an architectural visualization studio delivering high-end interior and exterior imagery, refined architectural renders, and cinematic 3D animations for luxury residential, commercial, and mixed-use developments. Our work is driven by precision, atmosphere, and visual storytelling, allowing developers and design studios to present their projects with confidence at every stage — from concept to marketing. To experience the depth and quality of our work, explore our portfolio in the <i>Work</i> section.
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="contact-us">Contact Us</div>
+                <div class="social">
+                    <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" rel="noopener"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="https://wa.me/923406025442" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="copyright">© 2023 BESCA Studio All Rights Reserved.</div>
+                <div class="privacy"><a href="privacy.html">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Desktop scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight - 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (window.innerWidth <= 900) {
+                        document.getElementById('mobileMenu').classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+  // Hide loader after page fully loads
+  window.addEventListener('load', () => {
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+      // Minimum display time for better UX (1.5 seconds)
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        // Remove from DOM after fade (optional)
+        setTimeout(() => {
+          loader.remove();
+        }, 600);
+      }, 600);
+    }
+  });
+
+  // Safety: force hide after max 5 seconds (mobile cache issues)
+  setTimeout(() => {
+    const loader = document.querySelector('.page-loader');
+    if (loader && !loader.classList.contains('hidden')) {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 600);
+    }
+  }, 1000);
+
+
+
+
+  
+
+
+
+
+
+ 
+</script>
+</body>
+</html>

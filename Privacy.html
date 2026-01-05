@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | BESCA - 3D Architectural Visualization</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-pt">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Futura PT', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+
+
+
+
+/* ==================== PAGE LOADER (shows on all pages) ==================== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* or #000 if you want dark */
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.6s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Your loader animation */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: -20px 0px, 20px 0px;
+  animation: l18 1s infinite;
+}
+
+@keyframes l18 {
+  25% { box-shadow: -20px -20px, 20px 20px; }
+  50% { box-shadow: 0px -20px, 0px 20px; }
+  75% { box-shadow: 20px -20px, -20px 20px; }
+  100% { box-shadow: 20px 0px, -20px 0px; }
+}
+
+/* Optional: make it bigger on mobile */
+@media (max-width: 600px) {
+  .loader {
+    width: 20px;
+    box-shadow: -30px 0px, 30px 0px;
+  }
+  @keyframes l18 {
+    25% { box-shadow: -30px -30px, 30px 30px; }
+    50% { box-shadow: 0px -30px, 0px 30px; }
+    75% { box-shadow: 30px -30px, -30px 30px; }
+    100% { box-shadow: 30px 0px, -30px 0px; }
+  }
+}
+
+
+
+
+
+        /* Header / Nav same as home */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 50px 70px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-left a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+
+        .nav-left a:hover {
+            opacity: 1;
+        }
+
+        .nav-right img {
+            height: 50px;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+
+        .nav-right img:hover {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .privacy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 180px 70px 120px;
+        }
+
+        .page-title {
+            font-size: 80px;
+            font-weight: 100;
+            letter-spacing: 12px;
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            margin: 80px 0 30px;
+            opacity: 0.95;
+        }
+
+        p {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        ul {
+            margin: 20px 0 30px 30px;
+            color: #ccc;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: 100px;
+            letter-spacing: 2px;
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            text-align: center;
+            padding: 100px 70px 80px;
+            border-top: 1px solid #222;
+        }
+
+        .back-nav-inner {
+            display: inline-block;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .back-nav a {
+            float: left;
+            font-size: 16px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #aaa;
+            text-decoration: none;
+            transition: color .4s;
+        }
+
+        .back-nav a:last-child {
+            float: right;
+        }
+
+        .back-nav a:hover {
+            color: #fff;
+        }
+
+        /* FOOTER – Exact Same Final Version with White Box "STUDIO" */
+        footer {
+            background: #000;
+            color: #999;
+            padding: 50px 80px 100px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 100px;
+        }
+
+        .footer-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .logo-studio-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-logo {
+            font-size: 58px;
+            font-weight: 400;
+            letter-spacing: 18px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 33px;
+        }
+
+        .studio-box {
+            position: absolute;
+            bottom: 26px;
+            left: 1.9%;
+            right: 6.9%;
+            width: auto;
+            height: 36px;
+            background: #fff;
+            z-index: 1;
+            padding: 0 15%;
+        }
+
+        .studio-text {
+            position: absolute;
+            bottom: 25px;
+            left: 13px;
+            right: 0;
+            width: auto;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 25px;
+            color: #000;
+            z-index: 3;
+            padding: 0% 15%;
+        }
+
+        .tagline {
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1;
+            margin-top: 40px;
+        }
+
+        .footer-right {
+            flex: 1;
+            min-width: 300px;
+            text-align: right;
+        }
+
+        .contact-us {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+
+        .social {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-end;
+            margin-bottom: 100px;
+        }
+
+        .social a {
+            width: 54px;
+            height: 54px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 24px;
+            transition: all .5s ease;
+        }
+
+        .social a:hover {
+            background: #444;
+            color: #fff;
+            transform: translateY(-6px);
+        }
+
+        .copyright, .privacy {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .privacy a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .privacy a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav {
+                display: none;
+            }
+
+            .privacy-container {
+                padding: 140px 30px 100px;
+            }
+
+            .page-title {
+                font-size: 60px;
+                letter-spacing: 8px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                letter-spacing: 4px;
+            }
+
+            .back-nav {
+                padding: 80px 30px 60px;
+            }
+
+            .back-nav a {
+                float: none;
+                display: block;
+                margin: 20px 0;
+            }
+
+            footer {
+                padding: 140px 40px 80px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 80px;
+                text-align: center;
+            }
+
+            .footer-left, .footer-right {
+                text-align: center;
+            }
+
+            .social {
+                justify-content: center;
+            }
+
+            .footer-logo {
+                font-size: 52px;
+                letter-spacing: 14px;
+            }
+
+            .studio-box, .studio-text {
+                padding: 0 12%;
+                height: 32px;
+                bottom: 27px;
+            }
+
+            .studio-text {
+                font-size: 20px;
+                letter-spacing: 22px;
+            }
+
+            .tagline {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 48px;
+            }
+
+            .footer-logo {
+                font-size: 46px;
+                letter-spacing: 12px;
+            }
+
+            .social a {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+
+            .studio-box, .studio-text {
+                padding: 0 46%;
+                height: 28px;
+                bottom: 26px;
+            }
+
+            .studio-text {
+                font-size: 18px;
+                letter-spacing: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+    <!-- Page Loader -->
+<div class="page-loader">
+  <div class="loader"></div>
+</div>
+
+    <!-- Navigation (same as home) -->
+    <div class="nav">
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="index.html">
+                <img src="https://images-platform.99static.com//0bgn8iWl19GEoqbtAZSRuJqXiro=/256x239:859x843/fit-in/500x500/99designs-contests-attachments/155/155460/attachment_155460388" alt="BESCA Logo">
+            </a>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Content -->
+    <div class="privacy-container">
+        <h1 class="page-title">Privacy Policy</h1>
+
+        <p><strong>Effective Date: December 14, 2025</strong></p>
+
+        <p>At BESCA, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.besca.com">www.besca.com</a> (the "Site"), contact us, or engage with our services as a 3D architectural visualization studio.</p>
+
+        <p>Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</p>
+
+        <h2 class="section-title">1. Information We Collect</h2>
+        <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
+        <ul>
+            <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, email address, phone number, company name, and any other information you voluntarily provide when you contact us via email, WhatsApp, or contact forms.</li>
+            <li><strong>Derivative Data:</strong> Information our servers automatically collect when you access the Site, such as your IP address, browser type, operating system, access times, and the pages you have viewed directly before and after accessing the Site.</li>
+            <li><strong>Mobile Device Data:</strong> Device information like your mobile device ID, model, and manufacturer, and information about the location of your device if you access the Site from a mobile device.</li>
+        </ul>
+
+        <h2 class="section-title">2. Use of Your Information</h2>
+        <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you to:</p>
+        <ul>
+            <li>Respond to your inquiries, questions, and requests for project quotes or collaborations.</li>
+            <li>Send you updates, newsletters, or promotional materials (only with your consent).</li>
+            <li>Improve our website and services based on user behavior and feedback.</li>
+            <li>Monitor and analyze usage and trends to improve your experience with the Site.</li>
+            <li>Prevent fraudulent transactions and monitor against theft.</li>
+            <li>Comply with legal obligations.</li>
+        </ul>
+
+        <h2 class="section-title">3. Disclosure of Your Information</h2>
+        <p>We may share information we have collected about you in certain situations:</p>
+        <ul>
+            <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information is necessary to comply with the law, protect our rights, or defend against legal claims.</li>
+            <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of all or a portion of our assets.</li>
+            <li><strong>Third-Party Service Providers:</strong> We may share your data with trusted third parties who assist us in operating our website, conducting our business (e.g., web hosting, analytics), as long as those parties agree to keep this information confidential.</li>
+        </ul>
+        <p>We do not sell your personal information to third parties.</p>
+
+        <h2 class="section-title">4. Cookies and Tracking Technologies</h2>
+        <p>Our Site may use "cookies" to enhance user experience. Cookies are small files placed on your device that help us understand how you interact with the Site. You may refuse to accept cookies by adjusting your browser settings, but some features of the Site may not function properly.</p>
+        <p>We currently do not use Google Analytics or any advertising cookies. If we implement third-party analytics tools in the future, we will update this policy accordingly.</p>
+
+        <h2 class="section-title">5. Security of Your Information</h2>
+        <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that no security measures are perfect or impenetrable.</p>
+
+        <h2 class="section-title">6. Your Rights and Choices</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Request access to the personal data we hold about you.</li>
+            <li>Request correction or deletion of your personal data.</li>
+            <li>Opt out of receiving marketing communications at any time.</li>
+            <li>Withdraw consent where we rely on consent to process your data.</li>
+        </ul>
+        <p>To exercise these rights, please contact us using the details provided below.</p>
+
+        <h2 class="section-title">7. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top.</p>
+        <p>You are advised to review this Privacy Policy periodically for any changes.</p>
+
+        <h2 class="section-title">8. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us at:</p>
+        <p>
+            <strong>BESCA Studio</strong><br>
+            Lahore, Pakistan<br>
+            Email: farhan.besca@gmail.com<br>
+            WhatsApp: +92 340 6025452 <br> +92 340 6025452
+        </p>
+
+        <p class="last-updated">Last updated: December 14, 2025</p>
+    </div>
+
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <div class="back-nav-inner">
+            <a href="index.html">← Back to Home</a>
+            <a href="gallery.html">Back to Gallery →</a>
+        </div>
+    </div>
+
+    <!-- FOOTER – Exact Same Final Version with White Box "STUDIO" + Long Paragraph -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="logo-studio-wrapper">
+                    <div class="footer-logo">BESCA</div>
+                    <div class="studio-box"></div>
+                    <div class="studio-text">STUDIO</div>
+                </div>
+                <div class="tagline">
+                    BESCA Studio is an architectural visualization studio delivering high-end interior and exterior imagery, refined architectural renders, and cinematic 3D animations for luxury residential, commercial, and mixed-use developments. Our work is driven by precision, atmosphere, and visual storytelling, allowing developers and design studios to present their projects with confidence at every stage — from concept to marketing. To experience the depth and quality of our work, explore our portfolio in the <i>Work</i> section.
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="contact-us">Contact Us</div>
+                <div class="social">
+                    <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" rel="noopener"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="https://wa.me/923001234567" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="copyright">© 2023 BESCA Studio All Rights Reserved.</div>
+                <div class="privacy"><a href="Privacy.html">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+  // Hide loader after page fully loads
+  window.addEventListener('load', () => {
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+      // Minimum display time for better UX (1.5 seconds)
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        // Remove from DOM after fade (optional)
+        setTimeout(() => {
+          loader.remove();
+        }, 600);
+      }, 600);
+    }
+  });
+
+  // Safety: force hide after max 5 seconds (mobile cache issues)
+  setTimeout(() => {
+    const loader = document.querySelector('.page-loader');
+    if (loader && !loader.classList.contains('hidden')) {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 600);
+    }
+  }, 1000);
+
+
+
+  
+
+
+
+ // Custom Cursor - Only activate on large screens
+ if (window.innerWidth > 1024) {
+ const cursor = document.querySelector('.custom-cursor');
+ 
+ document.addEventListener('mousemove', (e) => {
+ cursor.style.left = e.clientX + 'px';
+ cursor.style.top = e.clientY + 'px';
+ });
+ 
+ document.addEventListener('mousedown', () => {
+ cursor.classList.add('active');
+ });
+ 
+ document.addEventListener('mouseup', () => {
+ cursor.classList.remove('active');
+ });
+ }
+</script>
+</body>
+</html>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | BESCA - 3D Architectural Visualization</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-pt">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+      
+
+        /* ==================== PAGE LOADER (shows on all pages) ==================== */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: #fff;
+            /* or #000 if you want dark */
+            z-index: 999999;
+            display: grid;
+            place-items: center;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Your loader animation */
+        .loader {
+            width: 15px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #000;
+            box-shadow: -20px 0px, 20px 0px;
+            animation: l18 1s infinite;
+        }
+
+        @keyframes l18 {
+            25% {
+                box-shadow: -20px -20px, 20px 20px;
+            }
+
+            50% {
+                box-shadow: 0px -20px, 0px 20px;
+            }
+
+            75% {
+                box-shadow: 20px -20px, -20px 20px;
+            }
+
+            100% {
+                box-shadow: 20px 0px, -20px 0px;
+            }
+        }
+
+        /* Optional: make it bigger on mobile */
+        @media (max-width: 600px) {
+            .loader {
+                width: 20px;
+                box-shadow: -30px 0px, 30px 0px;
+            }
+
+            @keyframes l18 {
+                25% {
+                    box-shadow: -30px -30px, 30px 30px;
+                }
+
+                50% {
+                    box-shadow: 0px -30px, 0px 30px;
+                }
+
+                75% {
+                    box-shadow: 30px -30px, -30px 30px;
+                }
+
+                100% {
+                    box-shadow: 30px 0px, -30px 0px;
+                }
+            }
+        }
+
+
+
+        body,
+        html {
+            font-family: 'Futura PT', sans-serif;
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* Desktop Navigation - Scroll Effect */
+        .nav-desktop {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 50px 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: transparent;
+            transition: all .6s ease;
+        }
+
+        .nav-desktop.scrolled {
+            padding: 30px 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-desktop .nav-left a {
+            color: #000;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+
+        .nav-desktop .nav-left a:hover {
+            opacity: 1;
+        }
+
+        .nav-desktop .nav-right img {
+            height: 50px;
+            opacity: 0.85;
+            transition: all .6s ease;
+        }
+
+        .center-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 42px;
+            font-weight: 100;
+            letter-spacing: 12px;
+            color: #000;
+            opacity: 0;
+            transition: opacity .6s ease;
+        }
+
+        .nav-desktop.scrolled .center-logo {
+            opacity: 1;
+        }
+
+        .nav-desktop.scrolled .nav-left,
+        .nav-desktop.scrolled .nav-right {
+            opacity: 0;
+        }
+
+        /* Mobile Navigation - "Work" text with click to open menu */
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            z-index: 100;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-mobile a {
+            color: #000;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+
+        .nav-mobile .logo-mobile {
+            font-size: 36px;
+            font-weight: 100;
+            letter-spacing: 8px;
+            color: #000;
+        }
+
+        .nav-mobile .work-link {
+            cursor: pointer;
+            opacity: 0.85;
+            transition: opacity .4s;
+        }
+
+        .nav-mobile .work-link:hover {
+            opacity: 1;
+        }
+
+        /* Mobile Work Menu - Slide from Right */
+        .mobile-work-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            z-index: 999;
+            padding: 140px 40px;
+            transition: right .5s ease;
+            text-align: center;
+        }
+
+        .mobile-work-menu.active {
+            right: 0;
+        }
+
+        .mobile-work-menu a {
+            display: block;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 40px;
+            opacity: 0.85;
+            transition: opacity .3s, transform .4s;
+        }
+
+        .mobile-work-menu a:hover {
+            opacity: 1;
+            transform: translateY(-6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/interior1.jpg') center/cover no-repeat;
+            transform: scale(1.15);
+            transition: transform 14s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hero.loaded .hero-bg {
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), #fff 80%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 30px;
+        }
+
+        .hero-title {
+            font-size: 140px;
+            font-weight: 100;
+            letter-spacing: 20px;
+            color: #000;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .hero.loaded .hero-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-subtitle {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 10px;
+            color: #333;
+            margin: 40px 0 60px;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s;
+        }
+
+        .hero.loaded .hero-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-text {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s;
+        }
+
+        .hero.loaded .hero-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 200px 70px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 90px;
+            font-weight: 100;
+            letter-spacing: 12px;
+            margin-bottom: 100px;
+            color: #000;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+            margin-bottom: 180px;
+        }
+
+        .contact-item {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .contact-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-item i {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #000;
+            transition: transform .6s;
+        }
+
+        .contact-item:hover i {
+            transform: translateY(-6px);
+        }
+
+        .contact-item h3 {
+            font-size: 28px;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .contact-item p,
+        .contact-item a {
+            font-size: 18px;
+            color: #444;
+            text-decoration: none;
+            transition: color .4s;
+        }
+
+        .contact-item a:hover {
+            color: #000;
+        }
+
+        .contact-item.link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item.link:hover {
+            transform: translateY(-5px);
+            opacity: 0.9;
+        }
+
+        .contact-item i {
+            cursor: pointer;
+            /* آئیکن پر بھی ہاتھ کا نشان آئے */
+        }
+
+        /* Form Section */
+        .form-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 70px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+            position: relative;
+            min-height: 800px;
+        }
+
+        .form-title {
+            font-size: 60px;
+            font-weight: 100;
+            letter-spacing: 10px;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #000;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            transition: all 1s ease;
+        }
+
+        .form-full {
+            grid-column: 1 / -1;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 20px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            font-family: 'Futura PT', sans-serif;
+            font-size: 18px;
+            color: #000;
+            transition: border-color .4s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #aaa;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            justify-self: center;
+            margin-top: 60px;
+            padding: 20px 80px;
+            background: #000;
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all .5s;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+            transform: translateY(-4px);
+        }
+
+        /* Thank You Message */
+        .thank-you-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1.2s ease;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .thank-you-message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .thank-you-message h2 {
+            font-size: 80px;
+            font-weight: 100;
+            letter-spacing: 12px;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        .thank-you-message p {
+            font-size: 22px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .thank-you-message a {
+            display: inline-block;
+            padding: 18px 60px;
+            background: #000;
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .5s;
+        }
+
+        .thank-you-message a:hover {
+            background: #333;
+            transform: translateY(-4px);
+        }
+
+        /* FOOTER – Exact Same as Final Version (with White Box "STUDIO") */
+        footer {
+            background: #000;
+            color: #999;
+            padding: 50px 80px 100px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 100px;
+        }
+
+        .footer-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .logo-studio-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-logo {
+            font-size: 58px;
+            font-weight: 400;
+            letter-spacing: 18px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 16px;
+        }
+
+        .studio-box {
+            position: absolute;
+            bottom: 10px;
+            left: 1.9%;
+            right: 6.9%;
+            width: auto;
+            height: 36px;
+            background: #fff;
+            z-index: 1;
+            padding: 0 15%;
+        }
+
+        .studio-text {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            right: 0;
+            width: auto;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 25px;
+            color: #000;
+            z-index: 3;
+            padding: 0% 15%;
+        }
+
+        .tagline {
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1;
+            margin-top: 40px;
+        }
+
+        .footer-right {
+            flex: 1;
+            min-width: 300px;
+            text-align: right;
+        }
+
+        .contact-us {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+
+        .social {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-end;
+            margin-bottom: 100px;
+        }
+
+        .social a {
+            width: 54px;
+            height: 54px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 24px;
+            transition: all .5s ease;
+        }
+
+        .social a:hover {
+            background: #444;
+            color: #fff;
+            transform: translateY(-6px);
+        }
+
+        .copyright,
+        .privacy {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .privacy a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .privacy a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .nav-mobile {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 90px;
+                letter-spacing: 12px;
+            }
+
+            .hero-subtitle {
+                font-size: 28px;
+            }
+
+            .hero-text {
+                font-size: 18px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 100px;
+            }
+
+            .contact-section {
+                padding: 150px 30px;
+            }
+
+            .form-section {
+                padding: 100px 30px;
+            }
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title,
+            .form-title {
+                font-size: 60px;
+            }
+
+            footer {
+                padding: 140px 40px 80px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 80px;
+                text-align: center;
+            }
+
+            .footer-left,
+            .footer-right {
+                text-align: center;
+            }
+
+            .social {
+                justify-content: center;
+            }
+
+            .footer-logo {
+                font-size: 52px;
+                letter-spacing: 14px;
+            }
+
+            .studio-box,
+            .studio-text {
+                padding: 0 12%;
+                height: 32px;
+                bottom: 10px;
+            }
+
+            .studio-text {
+                font-size: 20px;
+                letter-spacing: 21px;
+            }
+
+            .tagline {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 60px;
+                letter-spacing: 8px;
+            }
+
+            .section-title,
+            .form-title {
+                font-size: 48px;
+            }
+
+            .contact-section {
+                padding: 120px 20px;
+            }
+
+            .form-section {
+                padding: 80px 20px;
+            }
+
+            .footer-logo {
+                font-size: 46px;
+                letter-spacing: 12px;
+            }
+
+            .social a {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+
+            .studio-box,
+            .studio-text {
+                padding: 0 46%;
+                height: 28px;
+                bottom: 13px;
+            }
+
+            .studio-text {
+                font-size: 18px;
+                letter-spacing: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader"></div>
+    </div>
+
+
+  
+
+
+
+
+    <!-- Desktop Navigation -->
+    <div class="nav-desktop" id="navbar">
+        <div class="nav-left">
+            <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="center-logo">BESCA</div>
+        <div class="nav-right">
+            <a href="index.html">
+                <img src="img/logomain.png" alt="BESCA Logo">
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation - "Work" text (click to open menu) -->
+    <div class="nav-mobile">
+        <a href="index.html">Home</a>
+        <div class="logo-mobile">BESCA</div>
+        <div class="work-link" onclick="toggleWorkMenu()">Work</div>
+    </div>
+
+    <!-- Mobile Work Menu -->
+    <div class="mobile-work-menu" id="workMenu">
+        <a href="gallery.html">Gallery</a>
+        <a href="interior.html">Interior</a>
+        <a href="exterior.html">Exterior</a>
+        <a href="film-animation.html">Film + Animation</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">CONTACT</h1>
+            <div class="hero-subtitle">Let's Collaborate</div>
+            <p class="hero-text">
+                We're excited to hear about your project. Whether it's a residential tower, luxury interior, or
+                cinematic animation —
+                let's bring your vision to life with photorealistic excellence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-section">
+        <h2 class="section-title">Get in Touch</h2>
+
+        <div class="contact-grid">
+
+            <!-- Email -->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=farhan.besca@gmail.com&su=Inquiry%20from%20BESCA%20Website"
+                target="_blank" class="contact-item link">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>farhan.besca@gmail.com</p>
+            </a>
+
+            <!-- WhatsApp (دو نمبر والا، الگ الگ لنک) -->
+            <div class="contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp</h3>
+                <a href="https://wa.me/923406025452" target="_blank">+92 340 6025452</a><br>
+                <a href="https://wa.me/923258282823" target="_blank">+92 325 8282823</a>
+            </div>
+
+            <!-- Location (گوگل میپس لنک دے سکتے ہو) -->
+            <a href="" target="_blank" class="contact-item link">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Lahore, Pakistan<br>Serving Clients Worldwide</p>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Contact Form + Thank You on Same Page -->
+    <section class="form-section">
+        <h2 class="form-title">Send a Message</h2>
+
+        <!-- Form -->
+        <form id="contactForm" action="https://formsubmit.co/farhan.besca@gmail.com" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="project" placeholder="Project Type" class="form-full">
+            <textarea name="message" placeholder="Tell us about your project..." required class="form-full"></textarea>
+
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Inquiry from BESCA - {{name}}">
+
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
+
+        <!-- Thank You Message -->
+        <div class="thank-you-message" id="thankYou">
+            <h2>Thank You!</h2>
+            <p>We have received your message and will get back to you as soon as possible.<br>Our team typically
+                responds within 24 hours.</p>
+            <a href="index.html">← Back to Home</a>
+        </div>
+    </section>
+
+    <!-- FOOTER – Exact Same Final Version with White Box "STUDIO" -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="logo-studio-wrapper">
+                    <div class="footer-logo">BESCA</div>
+                    <div class="studio-box"></div>
+                    <div class="studio-text">STUDIO</div>
+                </div>
+                <div class="tagline">
+                    BESCA Studio is an architectural visualization studio delivering high-end interior and exterior
+                    imagery, refined architectural renders, and cinematic 3D animations for luxury residential,
+                    commercial, and mixed-use developments. Our work is driven by precision, atmosphere, and visual
+                    storytelling, allowing developers and design studios to present their projects with confidence at
+                    every stage — from concept to marketing. To experience the depth and quality of our work, explore
+                    our portfolio in the <i>Work</i> section.
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="contact-us">Contact Us</div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/in/bescastudio" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="copyright">© 2023 BESCA Studio All Rights Reserved.</div>
+                <div class="privacy"><a href="Privacy.html">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Hero Animation
+        window.addEventListener('load', () => {
+            document.querySelector('.hero').classList.add('loaded');
+        });
+
+        // Scroll Reveal for Contact Items
+        const contactItems = document.querySelectorAll('.contact-item');
+        const revealOnScroll = () => {
+            const trigger = window.innerHeight * 0.85;
+            contactItems.forEach((item, index) => {
+                const top = item.getBoundingClientRect().top;
+                if (top < trigger) {
+                    setTimeout(() => item.classList.add('visible'), index * 200);
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight - 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Work Menu Toggle (Click on "Work" text)
+        function toggleWorkMenu() {
+            document.getElementById('workMenu').classList.toggle('active');
+        }
+
+        // Thank You Message on Same Page
+        const form = document.getElementById('contactForm');
+        const thankYou = document.getElementById('thankYou');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+            }).then(() => {
+                form.style.opacity = '0';
+                form.style.visibility = 'hidden';
+                thankYou.classList.add('active');
+            }).catch(() => {
+                alert('Error. Please try again.');
+            });
+        });
+    </script>
+    <script>
+        // Hide loader after page fully loads
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.page-loader');
+            if (loader) {
+                // Minimum display time for better UX (1.5 seconds)
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    // Remove from DOM after fade (optional)
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 600);
+                }, 600);
+            }
+        });
+
+        // Safety: force hide after max 5 seconds (mobile cache issues)
+        setTimeout(() => {
+            const loader = document.querySelector('.page-loader');
+            if (loader && !loader.classList.contains('hidden')) {
+                loader.classList.add('hidden');
+                setTimeout(() => loader.remove(), 600);
+            }
+        }, 1000);
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
